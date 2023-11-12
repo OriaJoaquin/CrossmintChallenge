@@ -9,12 +9,9 @@ namespace CrossmintChallenge.Infrstructure;
 
 public class GoalProxy : IGoalProxy
 {
-    public string _apiBaseURL { get; set; }
-    public string _getCurrentGoalEndpoint { get; set; }
-    public string _candidateId { get; set; }
-
-
-
+    public readonly string _apiBaseURL;
+    public readonly string _getCurrentGoalEndpoint;
+    public readonly string _candidateId;
     public GoalProxy(IConfiguration configuration)
     {
         _apiBaseURL = configuration["APIBaseURL"];

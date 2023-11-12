@@ -3,15 +3,14 @@ using CrossmintChallenge.Core.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 var serviceProvider = new ServiceCollection()
+                            .AddAutoMapper()
                             .AddAppConfiguration()
                             .AddCustomServices()
                             .BuildServiceProvider();
 
-// Use the service
-var myService = serviceProvider.GetRequiredService<IGoalService>();
-Console.WriteLine($"Current goal: {await myService.GetCurrentGoal()}");
+var goalService = serviceProvider.GetRequiredService<IGoalService>();
+var megaverseService = serviceProvider.GetRequiredService<IMegaverseService>();
 
-Console.WriteLine("Hello, World!");
-var input = Console.ReadLine();
+var currentGoal = await goalService.GetCurrentGoal();
 
-Console.WriteLine(input);
+await megaverseService.CreateMegaverse(currentGoal);
