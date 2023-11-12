@@ -15,7 +15,12 @@ namespace CrossmintChallenge.Application.Services
 
         public async Task<Goal> GetCurrentGoal()
         {
-            return await _goalProxy.GetCurrentGoal();
+            var goal = await _goalProxy.GetCurrentGoal();
+
+            Console.WriteLine("This is our current goal map. We need to create:");
+            Console.WriteLine($"\t*{goal.Polyanets.Count} Polyanets.");
+            
+            return goal;
         }
     }
 }

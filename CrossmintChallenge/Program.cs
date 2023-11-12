@@ -1,30 +1,16 @@
-﻿using CrossmintChallenge.Application.Services;
-using CrossmintChallenge.Core.Interfaces.Proxies;
+﻿using CrossmintChallenge.Application.ExtensionMethods;
 using CrossmintChallenge.Core.Interfaces.Services;
-using CrossmintChallenge.Infrstructure;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-IConfiguration configuration = new ConfigurationBuilder()
-           .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-           .Build();
-
-string apiBaseUrl = configuration["AppSettings:APIBaseURL"];
-
-// Set up DI container
 var serviceProvider = new ServiceCollection()
-    .AddSingleton<IConfiguration>(configuration)
-    .AddScoped<IGoalService, GoalService>()  
-    .AddScoped<IGoalProxy, GoalProxy>()  
-    .BuildServiceProvider();
+                            .AddAutoMapper()
+                            .AddAppConfiguration()
+                            .AddCustomServices()
+                            .BuildServiceProvider();
 
-// Use the service
-var myService = serviceProvider.GetRequiredService<IGoalService>();
-Console.WriteLine($"Current goal: {await myService.GetCurrentGoal()}");
+var goalService = serviceProvider.GetRequiredService<IGoalService>();
+var megaverseService = serviceProvider.GetRequiredService<IMegaverseService>();
 
-Console.WriteLine(apiBaseUrl);
+var currentGoal = await goalService.GetCurrentGoal();
 
-Console.WriteLine("Hello, World!");
-var input = Console.ReadLine();
-
-Console.WriteLine(input);
+await megaverseService.CreateMegaverse(currentGoal);

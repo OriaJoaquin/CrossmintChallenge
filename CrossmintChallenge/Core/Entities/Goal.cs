@@ -7,4 +7,9 @@ public class Goal
     {
         Polyanets = new List<Polyanet>();
     }
+
+    public int getAstralTotalObjectsCount()
+    {
+        return Polyanets.Count;
+    }
 }
