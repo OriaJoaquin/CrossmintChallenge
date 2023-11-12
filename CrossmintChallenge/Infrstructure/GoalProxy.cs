@@ -39,6 +39,7 @@ public class GoalProxy : IGoalProxy
                     string apiResponse = await response.Content.ReadAsStringAsync();
 
                     GoalResponse goalResponse = JsonSerializer.Deserialize<GoalResponse>(apiResponse);
+                    
                     return MapGoalResponseToGoal(goalResponse);
                 }
                 else
