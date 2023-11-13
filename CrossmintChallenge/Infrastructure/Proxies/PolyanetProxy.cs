@@ -5,7 +5,7 @@ using CrossmintChallenge.Core.Interfaces.Proxies;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
-namespace CrossmintChallenge.Infrstructure.Proxies;
+namespace CrossmintChallenge.Infrastructure.Proxies;
 
 public class PolyanetProxy : IPolyanetProxy
 {

@@ -4,7 +4,7 @@ using CrossmintChallenge.Core.Interfaces.Services;
 using System.Buffers.Text;
 using System.Threading.Tasks;
 using System;
-using CrossmintChallenge.Infrstructure.Proxies;
+using CrossmintChallenge.Infrastructure.Proxies;
 using CrossmintChallenge.Application.Helpers;
 
 namespace CrossmintChallenge.Application.Services;

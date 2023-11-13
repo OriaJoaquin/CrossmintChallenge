@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
 
-namespace CrossmintChallenge.Infrstructure;
+namespace CrossmintChallenge.Infrastructure;
 
 public class GoalProxy : IGoalProxy
 {
