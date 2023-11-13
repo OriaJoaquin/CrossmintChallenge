@@ -1,7 +1,6 @@
 ﻿using CrossmintChallenge.Application.Services;
 using CrossmintChallenge.Core.Interfaces.Proxies;
 using CrossmintChallenge.Core.Interfaces.Services;
-using CrossmintChallenge.Infrastructure;
 using CrossmintChallenge.Infrastructure.Proxies;
 using Microsoft.Extensions.DependencyInjection;
 

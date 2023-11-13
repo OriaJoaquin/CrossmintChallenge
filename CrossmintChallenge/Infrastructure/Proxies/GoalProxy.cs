@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
 
-namespace CrossmintChallenge.Infrastructure;
+namespace CrossmintChallenge.Infrastructure.Proxies;
 
 public class GoalProxy : IGoalProxy
 {
@@ -36,7 +36,7 @@ public class GoalProxy : IGoalProxy
                     string apiResponse = await response.Content.ReadAsStringAsync();
 
                     GoalResponse goalResponse = JsonSerializer.Deserialize<GoalResponse>(apiResponse);
-                    
+
                     return MapGoalResponseToGoal(goalResponse);
                 }
                 else
