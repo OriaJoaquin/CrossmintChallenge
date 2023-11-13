@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
-using CrossmintChallenge.Core.API.Requests;
 using CrossmintChallenge.Core.Entities;
+using CrossmintChallenge.Core.Entities.API.Requests;
 using CrossmintChallenge.Core.Interfaces.Proxies;
 using Microsoft.Extensions.Configuration;
+using System.Text;
 using System.Text.Json;
 
 namespace CrossmintChallenge.Infrastructure.Proxies;
@@ -35,7 +36,7 @@ public class PolyanetProxy : IPolyanetProxy
             string jsonData = JsonSerializer.Serialize(createPolyanetRequest);
 
             using (HttpClient client = new HttpClient())
-            using (HttpContent content = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json"))
+            using (HttpContent content = new StringContent(jsonData, Encoding.UTF8, "application/json"))
             {
                 HttpResponseMessage response = await client.PostAsync(apiUrl, content);
 
@@ -45,7 +46,7 @@ public class PolyanetProxy : IPolyanetProxy
                 }
                 else
                 {
-                    //Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+                    Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
                     throw new Exception("Something went wrong while creating Polyanets");
                 }
             }

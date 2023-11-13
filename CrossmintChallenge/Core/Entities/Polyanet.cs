@@ -1,5 +1,9 @@
-﻿namespace CrossmintChallenge.Core.Entities;
+﻿using CrossmintChallenge.Core.Interfaces.Entities;
 
-public class Polyanet : AstralObject
+namespace CrossmintChallenge.Core.Entities;
+
+public class Polyanet : IAstralObject
 {
+    public int Row { get; set; }
+    public int Column { get; set; }
 }

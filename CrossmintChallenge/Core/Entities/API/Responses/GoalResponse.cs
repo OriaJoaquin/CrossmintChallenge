@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CrossmintChallenge.Core.API.Responses;
+namespace CrossmintChallenge.Core.Entities.API.Responses;
 
 public class GoalResponse
 {

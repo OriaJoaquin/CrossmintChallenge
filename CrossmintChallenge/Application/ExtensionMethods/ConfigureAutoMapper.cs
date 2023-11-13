@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CrossmintChallenge.Core.API.Requests;
 using CrossmintChallenge.Core.Entities;
+using CrossmintChallenge.Core.Entities.API.Requests;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,6 +17,8 @@ namespace CrossmintChallenge.Application.ExtensionMethods
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Polyanet, CreatePolyanetRequest>();
+                cfg.CreateMap<Soloon, CreateSoloonRequest>();
+                cfg.CreateMap<Cometh, CreateComethRequest>();
             });
 
             IMapper mapper = config.CreateMapper();

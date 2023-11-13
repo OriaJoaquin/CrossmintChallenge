@@ -19,6 +19,8 @@ namespace CrossmintChallenge.Application.Services
 
             Console.WriteLine("This is our current goal map. We need to create:");
             Console.WriteLine($"\t*{goal.Polyanets.Count} Polyanets.");
+            Console.WriteLine($"\t*{goal.Comeths.Count} Comeths.");
+            Console.WriteLine($"\t*{goal.Soloons.Count} Soloons.");
             
             return goal;
         }

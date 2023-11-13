@@ -1,7 +1,6 @@
 ﻿using CrossmintChallenge.Application.Services;
 using CrossmintChallenge.Core.Interfaces.Proxies;
 using CrossmintChallenge.Core.Interfaces.Services;
-using CrossmintChallenge.Infrastructure;
 using CrossmintChallenge.Infrastructure.Proxies;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +14,8 @@ public static class ConfigureServices
         services.AddScoped<IMegaverseService, MegaverseService>();
         services.AddScoped<IGoalProxy, GoalProxy>();
         services.AddScoped<IPolyanetProxy, PolyanetProxy>();
+        services.AddScoped<ISoloonProxy, SoloonProxy>();
+        services.AddScoped<IComethProxy, ComethProxy>();
 
         return services;
     }

@@ -1,11 +1,11 @@
-﻿using CrossmintChallenge.Core.API.Responses;
-using CrossmintChallenge.Core.Entities;
+﻿using CrossmintChallenge.Core.Entities;
+using CrossmintChallenge.Core.Entities.API.Responses;
 using CrossmintChallenge.Core.Interfaces.Proxies;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
 
-namespace CrossmintChallenge.Infrastructure;
+namespace CrossmintChallenge.Infrastructure.Proxies;
 
 public class GoalProxy : IGoalProxy
 {
@@ -36,7 +36,7 @@ public class GoalProxy : IGoalProxy
                     string apiResponse = await response.Content.ReadAsStringAsync();
 
                     GoalResponse goalResponse = JsonSerializer.Deserialize<GoalResponse>(apiResponse);
-                    
+
                     return MapGoalResponseToGoal(goalResponse);
                 }
                 else
@@ -65,6 +65,19 @@ public class GoalProxy : IGoalProxy
                 {
                     goal.Polyanets.Add(new Polyanet() { Row = row.rowIndex, Column = column.columnIndex });
                 }
+
+                if (column.astralObject.Contains("COMETH"))
+                {
+                    var aux = column.astralObject.Split("_");
+                    goal.Comeths.Add(new Cometh() { Row = row.rowIndex, Column = column.columnIndex, Direction = aux[0].ToLower() });
+                }
+
+                if (column.astralObject.Contains("SOLOON"))
+                {
+                    var aux = column.astralObject.Split("_");
+                    goal.Soloons.Add(new Soloon() { Row = row.rowIndex, Column = column.columnIndex, Color = aux[0].ToLower() });
+                }
+
             }
         }
 
