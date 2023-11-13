@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace CrossmintChallenge.Core.API.Requests
+namespace CrossmintChallenge.Core.Entities.API.Requests
 {
     public class CreatePolyanetRequest
     {
