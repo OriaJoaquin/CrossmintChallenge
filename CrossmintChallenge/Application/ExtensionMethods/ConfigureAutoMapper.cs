@@ -18,12 +18,12 @@ namespace CrossmintChallenge.Application.ExtensionMethods
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Polyanet, IAstralObjectRequest>()
-                    .ConstructUsing(src => new CreatePolyanetRequest());
-                cfg.CreateMap<Cometh, IAstralObjectRequest>()
-                    .ConstructUsing(src => new CreateComethRequest(src.Direction));
-                cfg.CreateMap<Soloon, IAstralObjectRequest>()
-                    .ConstructUsing(src => new CreateSoloonRequest(src.Color));
+                cfg.CreateMap<Polyanet, CreatePolyanetRequest>();
+                cfg.CreateMap<Cometh, CreateComethRequest>();
+                cfg.CreateMap<Soloon, CreateSoloonRequest>();
+                cfg.CreateMap<Polyanet, IAstralObjectRequest>().As<CreatePolyanetRequest>();
+                cfg.CreateMap<Cometh, IAstralObjectRequest>().As<CreateComethRequest>();
+                cfg.CreateMap<Soloon, IAstralObjectRequest>().As<CreateSoloonRequest>();
 
             });
 

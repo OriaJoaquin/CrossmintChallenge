@@ -6,15 +6,14 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace CrossmintChallenge.Core.Entities.API.Requests
+namespace CrossmintChallenge.Core.Entities.API.Requests;
+
+public class CreatePolyanetRequest: IAstralObjectRequest
 {
-    public class CreatePolyanetRequest: IAstralObjectRequest
-    {
-        [JsonPropertyName("row")]
-        public int Row { get; set; }
-        [JsonPropertyName("column")]
-        public int Column { get; set; }
-        [JsonPropertyName("candidateId")]
-        public string CandidateId { get; set; }
-    }
+    [JsonPropertyName("row")]
+    public int Row { get; set; }
+    [JsonPropertyName("column")]
+    public int Column { get; set; }
+    [JsonPropertyName("candidateId")]
+    public string CandidateId { get; set; }
 }

@@ -10,15 +10,6 @@ namespace CrossmintChallenge.Core.Entities.API.Requests
 {
     public class CreateSoloonRequest : IAstralObjectRequest
     {
-        public CreateSoloonRequest()
-        {
-
-        }
-        public CreateSoloonRequest(string color)
-        {
-            Color = color;
-        }
-
         [JsonPropertyName("row")]
         public int Row { get; set; }
         [JsonPropertyName("column")]
