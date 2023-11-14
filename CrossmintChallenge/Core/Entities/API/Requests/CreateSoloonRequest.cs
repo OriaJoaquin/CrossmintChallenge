@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CrossmintChallenge.Core.Interfaces.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace CrossmintChallenge.Core.Entities.API.Requests
 {
-    public class CreateSoloonRequest
+    public class CreateSoloonRequest : IAstralObjectRequest
     {
+        public CreateSoloonRequest()
+        {
+
+        }
+        public CreateSoloonRequest(string color)
+        {
+            Color = color;
+        }
+
         [JsonPropertyName("row")]
         public int Row { get; set; }
         [JsonPropertyName("column")]

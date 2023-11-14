@@ -16,12 +16,14 @@ namespace CrossmintChallenge.Application.Services
         public async Task<Goal> GetCurrentGoal()
         {
             var goal = await _goalProxy.GetCurrentGoal();
+           
+            var groupedByType = goal.AstralObjects.GroupBy(obj => obj.GetType());
+           
+            foreach (var group in groupedByType)
+            {
+                Console.WriteLine($"Astral objects of type {group.Key.Name}: {group.Count()}");
+            }
 
-            Console.WriteLine("This is our current goal map. We need to create:");
-            Console.WriteLine($"\t*{goal.Polyanets.Count} Polyanets.");
-            Console.WriteLine($"\t*{goal.Comeths.Count} Comeths.");
-            Console.WriteLine($"\t*{goal.Soloons.Count} Soloons.");
-            
             return goal;
         }
     }
