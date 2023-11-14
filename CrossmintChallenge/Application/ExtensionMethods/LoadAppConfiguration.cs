@@ -1,9 +1,4 @@
-﻿
-using CrossmintChallenge.Application.Services;
-using CrossmintChallenge.Core.Interfaces.Proxies;
-using CrossmintChallenge.Core.Interfaces.Services;
-using CrossmintChallenge.Infrastructure;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CrossmintChallenge.Application.ExtensionMethods;

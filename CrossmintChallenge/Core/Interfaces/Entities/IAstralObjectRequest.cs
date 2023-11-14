@@ -1,14 +1,13 @@
-﻿using CrossmintChallenge.Core.Interfaces.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace CrossmintChallenge.Core.Entities.API.Requests;
+namespace CrossmintChallenge.Core.Interfaces.Entities;
 
-public class CreatePolyanetRequest: IAstralObjectRequest
+public interface IAstralObjectRequest
 {
     [JsonPropertyName("row")]
     public int Row { get; set; }
