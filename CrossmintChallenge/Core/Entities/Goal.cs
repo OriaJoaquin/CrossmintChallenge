@@ -9,9 +9,4 @@ public class Goal
     {
         AstralObjects = new List<IAstralObject>();
     }
-
-    public int getAstralTotalObjectsCount()
-    {
-        return AstralObjects.Count;
-    }
 }

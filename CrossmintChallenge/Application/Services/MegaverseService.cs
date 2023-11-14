@@ -28,14 +28,14 @@ public class MegaverseService : IMegaverseService
     {
         try
         {
-            var astralObjectsCount = goal.getAstralTotalObjectsCount();
+            var astralObjectsCount = goal.AstralObjects.Count();
             var astralObjectsCreatedCount = 1;
 
             var groupedByType = goal.AstralObjects.GroupBy(obj => obj.GetType());
 
             foreach (var group in groupedByType)
             {
-                Console.WriteLine($"Creating Astral objects of type {group.Key.Name}");
+                Console.WriteLine($"\nCreating Astral objects of type {group.Key.Name}");
 
                 foreach (var astralObject in group)
                 {
@@ -45,39 +45,8 @@ public class MegaverseService : IMegaverseService
                     await _astralObjectProxy.CreateAstralObject(astralObject);
                 }
 
-                Console.WriteLine($"Astral objects of type {group.Key.Name} created !!!");
+                Console.WriteLine($"\nAstral objects of type {group.Key.Name} created !!!");
             }
-
-            //Console.WriteLine("Creating Megaverse!!");
-            //foreach (var polyanet in goal.Polyanets)
-            //{
-            //    ProgressBarHelper.UpdateProgressBar(astralObjectsCreatedCount, astralObjectsCount);
-            //    astralObjectsCreatedCount++;
-            //    Thread.Sleep(500);
-            //    await _polyanetProxy.CreatePolyanet(polyanet);
-            //}
-
-            //Console.WriteLine("\n-- Polyanets created --");
-
-            //foreach (var cometh in goal.Comeths)
-            //{
-            //    ProgressBarHelper.UpdateProgressBar(astralObjectsCreatedCount, astralObjectsCount);
-            //    astralObjectsCreatedCount++;
-            //    Thread.Sleep(500);
-            //    await _comethProxy.CreateCometh(cometh);
-            //}
-
-            //Console.WriteLine("\n-- Comeths created --");
-
-            //foreach (var soloon in goal.Soloons)
-            //{
-            //    ProgressBarHelper.UpdateProgressBar(astralObjectsCreatedCount, astralObjectsCount);
-            //    astralObjectsCreatedCount++;
-            //    Thread.Sleep(500);
-            //    await _soloonProxy.CreateSoloon(soloon);
-            //}
-
-            //Console.WriteLine("\n-- Soloons created --");
 
             Console.WriteLine("Megaverse completed!!");
         }
