@@ -1,7 +1,11 @@
 ﻿using CrossmintChallenge.Core.Entities;
 using CrossmintChallenge.Core.Entities.API.Responses;
+using CrossmintChallenge.Core.Enums;
+using CrossmintChallenge.Core.Interfaces.Entities;
 using CrossmintChallenge.Core.Interfaces.Proxies;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Data.Common;
 using System.Text.Json;
 
 
@@ -41,46 +45,56 @@ public class GoalProxy : IGoalProxy
                 }
                 else
                 {
-                    Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+                    throw new Exception($"Error: {response.StatusCode} - {response.ReasonPhrase}");
                 }
             }
-            catch (HttpRequestException e)
+            catch (Exception e)
             {
-                Console.WriteLine($"Request exception: {e.Message}");
+                Environment.Exit(0);
+                throw new Exception(e.Message);
             }
         }
-
-        return null;
     }
 
     private Goal MapGoalResponseToGoal(GoalResponse goalResponse)
     {
         var goal = new Goal();
 
-        foreach (var row in goalResponse.Goal.Select((columns, rowIndex) => (columns, rowIndex)))
+        foreach (var row in goalResponse.Goal.Select((columns, index) => (columns, index)))
         {
-            foreach (var column in row.columns.Select((astralObject, columnIndex) => (astralObject, columnIndex)))
+            foreach (var column in row.columns.Select((astralObjectName, index) => (astralObjectName, index)))
             {
-                if (column.astralObject == "POLYANET")
-                {
-                    goal.AstralObjects.Add(new Polyanet() { Row = row.rowIndex, Column = column.columnIndex });
-                }
-
-                if (column.astralObject.Contains("COMETH"))
-                {
-                    var aux = column.astralObject.Split("_");
-                    goal.AstralObjects.Add(new Cometh() { Row = row.rowIndex, Column = column.columnIndex, Direction = aux[0].ToLower() });
-                }
-
-                if (column.astralObject.Contains("SOLOON"))
-                {
-                    var aux = column.astralObject.Split("_");
-                    goal.AstralObjects.Add(new Soloon() { Row = row.rowIndex, Column = column.columnIndex, Color = aux[0].ToLower() });
+                var createdAstralObject = CreateAstralObject(column.astralObjectName, row.index, column.index);
+                
+                if (createdAstralObject != null) {
+                    goal.AstralObjects.Add(createdAstralObject); 
                 }
 
             }
         }
 
         return goal;
+    }
+
+    private IAstralObject CreateAstralObject(string astralObjectName, int rowIndex, int columnIndex)
+    {
+        if (astralObjectName == AstralObjectEnum.Polyanet)
+        {
+            return new Polyanet() { Row = rowIndex, Column = columnIndex };
+        }
+
+        if (astralObjectName.Contains(AstralObjectEnum.Cometh))
+        {
+            var aux = astralObjectName.Split("_");
+            return new Cometh() { Row = rowIndex, Column = columnIndex, Direction = aux[0].ToLower() };
+        }
+
+        if (astralObjectName.Contains(AstralObjectEnum.Soloon))
+        {
+            var aux = astralObjectName.Split("_");
+            return new Soloon() { Row = rowIndex, Column = columnIndex, Color = aux[0].ToLower() };
+        }
+
+        return null;
     }
 }

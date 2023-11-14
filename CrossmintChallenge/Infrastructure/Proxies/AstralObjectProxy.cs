@@ -59,6 +59,7 @@ public class AstralObjectProxy : IAstralObjectProxy
         }
         catch (Exception ex)
         {
+            Environment.Exit(0);
             throw new Exception(ex.Message);
         }
     }

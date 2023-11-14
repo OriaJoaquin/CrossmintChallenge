@@ -13,9 +13,6 @@ public static class ConfigureServices
         services.AddScoped<IGoalService, GoalService>();
         services.AddScoped<IMegaverseService, MegaverseService>();
         services.AddScoped<IGoalProxy, GoalProxy>();
-        services.AddScoped<IPolyanetProxy, PolyanetProxy>();
-        services.AddScoped<ISoloonProxy, SoloonProxy>();
-        services.AddScoped<IComethProxy, ComethProxy>();
         services.AddScoped<IAstralObjectProxy, AstralObjectProxy>();
 
         return services;

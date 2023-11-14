@@ -11,16 +11,10 @@ namespace CrossmintChallenge.Application.Services;
 
 public class MegaverseService : IMegaverseService
 {
-    private readonly IPolyanetProxy _polyanetProxy;
-    private readonly IComethProxy _comethProxy;
-    private readonly ISoloonProxy _soloonProxy;
     private readonly IAstralObjectProxy _astralObjectProxy;
 
-    public MegaverseService(IPolyanetProxy polyanetProxy, IComethProxy comethProxy, ISoloonProxy soloonProxy, IAstralObjectProxy astralObjectProxy)
+    public MegaverseService(IAstralObjectProxy astralObjectProxy)
     {
-        _polyanetProxy = polyanetProxy;
-        _comethProxy = comethProxy;
-        _soloonProxy = soloonProxy;
         _astralObjectProxy = astralObjectProxy;
     }
 
@@ -41,7 +35,7 @@ public class MegaverseService : IMegaverseService
                 {
                     ProgressBarHelper.UpdateProgressBar(astralObjectsCreatedCount, astralObjectsCount);
                     astralObjectsCreatedCount++;
-                    Thread.Sleep(500);
+                    Thread.Sleep(600);
                     await _astralObjectProxy.CreateAstralObject(astralObject);
                 }
 
